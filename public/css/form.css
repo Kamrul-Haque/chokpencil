@@ -1,0 +1,179 @@
+.card-header{
+    background-color: transparent !important;
+    color: #4c4c4c !important;
+    text-align: center;
+    font-size: xx-large !important;
+    border-bottom: 2px solid #4c4c4c;
+}
+.card-footer{
+    background-color: transparent !important;
+    color: #4c4c4c !important;
+    border-top: 1px solid #4c4c4c;
+}
+
+label{
+    font-size: medium !important;
+}
+.form-control{
+    border-radius: 0 !important;
+    border: 2px solid #999 !important;
+}
+.input-group-prepend{
+    background: #dddddd;
+    padding-left: 7px;
+    padding-right: 7px;
+    border-right: 0;
+    border-top: 2px solid #999 !important;
+    border-left: 2px solid #999 !important;
+    border-bottom: 2px solid #999 !important;
+}
+.input-group-append{
+    background: #dddddd;
+    padding-left: 7px;
+    padding-right: 7px;
+    border-left: 0;
+    border-top: 2px solid #999 !important;
+    border-right: 2px solid #999 !important;
+    border-bottom: 2px solid #999 !important;
+}
+.input-group-text{
+    background: transparent !important;
+    border: 0;
+    padding: 0;
+}
+.icon{
+    margin-top: 8px;
+    width: 18px;
+    height: 18px;
+    color: #999 !important;
+}
+input:focus, select:focus, textarea:focus{
+    box-shadow: none !important;
+    outline: none !important;
+    border: 2px solid dodgerblue !important;
+}
+.form-group>.input-group>.form-control:focus+.input-group-prepend{
+    border-right: 0;
+    border-top: 2px solid dodgerblue !important;
+    border-left: 2px solid dodgerblue !important;
+    border-bottom: 2px solid dodgerblue !important;
+}
+.form-group>.input-group>.form-control:focus+.input-group-prepend>.icon{
+    color: dodgerblue !important;
+}
+.form-group>.input-group>.form-control:focus+.input-group-append{
+    border-left: 0;
+    border-top: 2px solid dodgerblue !important;
+    border-right: 2px solid dodgerblue !important;
+    border-bottom: 2px solid dodgerblue !important;
+}
+.form-group>.input-group>.form-control:focus+.input-group-append>.icon{
+    color: dodgerblue !important;
+}
+.btn-primary.custom{
+    background: dodgerblue !important;
+    color: white;
+    font-weight: bold;
+    border: 0;
+    border-radius: 0;
+}
+.btn-primary.custom:hover{
+    color: white;
+    border-color: dodgerblue !important;
+    box-shadow: 1px 1px white, 3px 3px dodgerblue !important;
+}
+.btn-success.custom{
+    background: mediumseagreen !important;
+    color: white;
+    font-weight: bold;
+    border-radius: 0;
+}
+.btn-success.custom:hover{
+    color: white;
+    border-color: mediumseagreen !important;
+    box-shadow: 1px 1px white, 3px 3px mediumseagreen !important;
+}
+.btn-danger.custom{
+    background: crimson !important;
+    color: white;
+    font-weight: bold;
+    border-radius: 0;
+}
+.btn-danger.custom:hover{
+    color: white;
+    border-color: crimson !important;
+    box-shadow: 1px 1px white, 3px 3px crimson !important;
+}
+.btn-dark.custom{
+    background: black !important;
+    color: white;
+    font-weight: bold;
+    border-radius: 0;
+}
+.btn-dark.custom:hover{
+    color: white;
+    border-color: black !important;
+    box-shadow: 1px 1px white, 3px 3px black !important;
+}
+.btn-warning.custom{
+    background: darkorange !important;
+    color: white;
+    font-weight: bold;
+    border-radius: 0;
+}
+.btn-warning.custom:hover{
+    color: white;
+    border-color: darkorange !important;
+    box-shadow: 1px 1px white, 3px 3px darkorange !important;
+}
+.btn-light.custom{
+    background: lightgray !important;
+    color: black;
+    font-weight: bold;
+    border-radius: 0;
+}
+.btn-light.custom:hover{
+    color: black;
+    border-color: lightgray !important;
+    box-shadow: 1px 1px white, 3px 3px lightgray !important;
+}
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
+    background-color: dodgerblue;
+}
+.custom-control-input:checked~.custom-control-label::after {
+    color: #fff;
+    background-color: dodgerblue;
+}
+.custom-control-input:focus {
+    display: none;
+}
+label{
+    font-size: medium;
+}
+.is-invalid{
+    border: 2px solid crimson !important;
+}
+.invalid-append{
+    border-left: 0;
+    border-top: 2px solid crimson !important;
+    border-right: 2px solid crimson !important;
+    border-bottom: 2px solid crimson !important;
+}
+.invalid-icon{
+    color: crimson !important;
+}
+.text-custom{
+    color: dodgerblue !important;
+}
+.custom-card{
+    border-radius: 15px;
+}
+.custom-file .custom-file-input~.custom-file-label{
+    border: 1px solid #999;
+    border-radius: 0;
+}
+.custom-file-input:focus~.custom-file-label{
+    box-shadow: none !important;
+    outline: none !important;
+    border: 1px solid dodgerblue;
+}
