@@ -154,9 +154,9 @@
         @if(auth()->user()->hasRole('student'))
             <div class="card my-4">
                 <div class="card-body d-flex justify-content-between">
-                    <h4>Progress: {{ auth()->user()->engagement($course) }}%</h4>
-                    <h4>Total Marks: {{ auth()->user()->totalMarks($course) }}</h4>
-                    <h4>Average Marks: {{ auth()->user()->avgMarks($course) }}%</h4>
+                    <h4>Progress: {{ number_format(auth()->user()->engagement($course),2,'.','') }}%</h4>
+                    <h4>Total Marks: {{ number_format(auth()->user()->totalMarks($course),2,'.','')  }}</h4>
+                    <h4>Average Marks: {{ number_format(auth()->user()->avgMarks($course),2,'.','') }}%</h4>
                 </div>
             </div>
         @endif
