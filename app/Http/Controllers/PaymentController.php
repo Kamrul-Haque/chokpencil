@@ -35,7 +35,6 @@ class PaymentController extends Controller
            'type'=>'required',
            'acc'=>'required|digits:10',
            'trxid'=>'required|string|unique:payments,transaction_id',
-           'amount'=>'required|numeric|in:'.$course->fee
         ]);
 
         $payment = new Payment();
@@ -44,7 +43,7 @@ class PaymentController extends Controller
         $payment->user_id = auth()->user()->id;
         $payment->account_no = $request->acc;
         $payment->transaction_id = $request->trxid;
-        $payment->amount = $request->amount;
+        $payment->amount = $course->fee;
         $payment->reference = $request->reference;
         $payment->save();
 

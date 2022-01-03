@@ -11,17 +11,13 @@ class PaymentPolicy
 {
     use HandlesAuthorization;
 
-    public function before()
-    {
-        if (auth()->user()->hasRole('admin'))
-            return true;
-    }
-
     public function create(User $user, Course $course)
     {
         if (auth()->user()->hasRole('student'))
         {
             if (!($course->payments()->where('user_id', $user->id)->first()))
+                return true;
+            elseif ($course->payments()->where('user_id', $user->id)->where('needs_verification',false)->where('is_verified',false)->first())
                 return true;
             else return $this->deny('You have already paid for the course!');
         }

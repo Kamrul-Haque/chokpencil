@@ -130,16 +130,6 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="amount">Amount</label>
-                        <input type="number" id="amount" name="amount" class="form-control @error('amount') is-invalid @enderror" value="{{ old('amount') }}" required>
-
-                        @error('amount')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                    </div>
-                    <div class="form-group">
                         <label for="reference">Reference</label>
                         <input type="text" id="reference" name="reference" class="form-control @error('reference') is-invalid @enderror" value="{{ old('reference') }}">
 
@@ -151,7 +141,7 @@
                     </div>
                     <div class="form-group">
                         <a href="{{ url()->previous() }}" class="btn custom btn-light">Cancel</a>
-                        <button type="submit" class="btn custom btn-primary">Submit</button>
+                        <button type="submit" class="btn custom btn-primary">Pay @if($course->currency == 'BDT')&#2547;@elseif($course->currency == 'USD')&dollar;@else{{$course->currency}}@endif{{ $course->fee }}</button>
                     </div>
                 </form>
             </div>

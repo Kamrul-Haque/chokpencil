@@ -59,16 +59,10 @@
                                 <input type="text" id="reference" name="reference" value="{{ old('reference') }}" class="form-control @error('reference') is-invalid @enderror" placeholder="name of the student" required>
                                 @error('reference') <span class="invalid-feedback" role="alert">{{ $message }}</span> @enderror
                             </div>
-                            <div class="form-group">
-                                <label for="amount">Amount <span class="text-danger">*</span></label>
-                                <input type="number" id="amount" name="amount" value="{{ old('amount') }}" class="form-control card-amount @error('amount') is-invalid @enderror" required>
-                                <small class="form-text text-muted">amount must be {{ $course->fee }}</small>
-                                @error('amount') <span class="invalid-feedback" role="alert">{{ $message }}</span> @enderror
-                            </div>
                             <br>
                             <div class="form-group">
                                 <a href="{{ url()->previous() }}" class="btn custom btn-light">Cancel</a>
-                                <button id="payment-button" type="submit" class="btn custom btn-primary">Pay Now</button>
+                                <button id="payment-button" type="submit" class="btn custom btn-primary">Pay @if($course->currency == 'BDT')&#2547;@elseif($course->currency == 'USD')&dollar;@else{{$course->currency}}@endif{{ $course->fee }}</button>
                             </div>
                         </form>
                     </div>
@@ -79,7 +73,6 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('js/stripe.js') }}"></script>
     <script>
         $(function() {
             // Create a Stripe client
@@ -136,7 +129,6 @@
 
                 var options = {
                     name: document.getElementById('name_on_card').value,
-                    amount: document.getElementById('amount').value,
                 }
 
                 stripe.createToken(card, options).then(function (result) {

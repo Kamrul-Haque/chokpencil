@@ -12,6 +12,8 @@
                             <br>has been received. Check email for details.
                         @elseif($notification->type === \App\Notifications\PaymentConfirmed::class)
                             Your Payment for {{ $notification->data['course'] }} has been confirmed. You are now enrolled into the course.
+                        @elseif($notification->type === \App\Notifications\PaymentRejected::class)
+                            Your Payment for {{ $notification->data['course'] }} has been rejected. Please try again or contact support.
                         @elseif($notification->type === \App\Notifications\AccountVerified::class)
                             Your account has been verified. You can now teach in our platform.
                         @elseif($notification->type === \App\Notifications\Enrolled::class)

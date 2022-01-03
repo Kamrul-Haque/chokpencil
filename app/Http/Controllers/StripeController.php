@@ -22,14 +22,13 @@ class StripeController extends Controller
         $request->validate([
             'name_on_card'=>'required|string|min:4',
             'reference'=>'required|string|min:4',
-            'amount'=>'required|numeric|in:'.$course->fee,
         ]);
 
         Stripe::setApiKey(env('STRIPE_SECRET'));
         try {
             $payment = Charge::create ([
-                "amount" => $request->amount,
-                "currency" => "usd",
+                "amount" => $course->fee*100,
+                "currency" => $course->currency,
                 "source" => $request->stripeToken,
                 "description" => "Enrollment Fee",
                 "metadata"=>[
@@ -54,8 +53,9 @@ class StripeController extends Controller
             'account_no'=>$payment->payment_method_details->card->last4,
             'reference'=>$request->reference,
             'transaction_id'=>$payment->balance_transaction,
-            'amount'=>$request->amount,
-            'is_verified'=>true
+            'amount'=>$course->fee,
+            'is_verified'=>true,
+            'needs_verification'=>false
         ]);
 
         if ($course->wishlists()->where('user_id', auth()->user()->id)->first())
@@ -65,6 +65,6 @@ class StripeController extends Controller
 
         $course->students()->syncWithoutDetaching(auth()->user()->id);
 
-        return back()->with('toast_success','Payment Received Successfully');
+        return redirect()->route('module.index',$course)->with('toast_success','Payment Received Successfully');
     }
 }
