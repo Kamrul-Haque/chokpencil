@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container py-4">
+    <div class="container-fluid px-5 py-4">
         <div class="card">
-            <div class="card-header">Enquiries</div>
             <div class="card-body">
+                <div class="card-title">Enquiries</div>
                 @if($enquiries->count())
                 <div class="table-responsive-lg">
-                    <table class="table table-bordered table-striped">
-                        <thead class="thead thead-dark">
+                    <table class="table border-bottom-0">
+                        <thead class="font-weight-bolder">
                             <tr>
                                 <th>#</th>
                                 <th>User Name</th>
@@ -55,18 +55,8 @@
                 @else
                     <h4 class="d-flex justify-content-center">NO RECORDS FOUND</h4>
                 @endif
-            </div>
-            <div class="card-footer">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <a href="{{ route('dashboard') }}" class="btn custom btn-light">Back</a>
-                    </div>
-                    <div class="col-sm-4 d-flex justify-content-center">
-                        {{ $enquiries->links() }}
-                    </div>
-                    <div class="col-sm-4">
-
-                    </div>
+                <div class="text-left">
+                    {{ $enquiries->links() }}
                 </div>
             </div>
         </div>

@@ -20,8 +20,8 @@
     }
     #sidebar {
         position: fixed;
-        top: 13vh;
-        width: 250px;
+        margin-top: 0.15%;
+        width: 15vw;
         min-height: 100%;
         max-height: 100%;
         background: #23272b;

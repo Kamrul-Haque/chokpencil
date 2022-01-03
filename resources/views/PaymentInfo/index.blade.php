@@ -1,16 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container py-4">
+    <div class="container-fluid px-5 py-4">
         <div class="card">
-            <div class="card-header">
-                Payment Information
-            </div>
             <div class="card-body">
+                <div class="card-title">
+                    Payment Information
+                </div>
                 @if($paymentInfos->count())
                     <div class="table-responsive-lg">
-                        <table class="table table-bordered table-striped">
-                            <thead class="thead-dark">
+                        <table class="table">
+                            <thead class="font-weight-bolder">
                             <tr>
                                 <th>#</th>
                                 <th>Method</th>
@@ -46,13 +46,8 @@
                 @else
                     <h4 class="d-flex justify-content-center">NO RECORDS FOUND</h4>
                 @endif
-            </div>
-            <div class="card-footer">
                 <div class="d-flex justify-content-between">
                     <div class="flex-column">
-                        <a href="{{ route('dashboard') }}" class="btn custom btn-light">Back</a>
-                    </div>
-                    <div class="flex-column justify-content-center">
                         {{ $paymentInfos->links() }}
                     </div>
                     <div class="flex-column">

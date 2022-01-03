@@ -43,6 +43,16 @@
             .btn.btn-light:hover{
                 background-color: lightgray;
             }
+
+            @auth
+                @if(auth()->user()->hasRole('ADMIN'))
+                    @unless(Request::is('/'))
+                        .content-wrapper {
+                            margin-left: 15vw;
+                        }
+                    @endunless
+                @endif
+            @endauth
         </style>
         @yield('styles')
     </head>
@@ -58,7 +68,7 @@
                 @endif
             @endauth
             <main>
-                <div>
+                <div class="content-wrapper">
                     @yield('content')
                 </div>
             </main>

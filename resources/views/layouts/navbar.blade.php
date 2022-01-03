@@ -123,12 +123,14 @@
                             <div>
                                 <div class="dropdown-menu dropdown-menu-right bg-light border-0" aria-labelledby="notificationButton">
                                     @foreach(auth()->user()->unreadNotifications as $notification)
-                                        <span class="dropdown-item text-light">
+                                        <span class="dropdown-item">
                                             @if($notification->type === \App\Notifications\PaymentReceived::class)
                                                 Your Payment of {{ $notification->data['amount'] }} for {{ $notification->data['course'] }}
                                                 <br>has been received. Check email for details.
                                             @elseif($notification->type === \App\Notifications\PaymentConfirmed::class)
                                                 Your Payment for {{ $notification->data['course'] }} has been confirmed. You are now enrolled into the course.
+                                            @elseif($notification->type === \App\Notifications\PaymentRejected::class)
+                                                Your Payment for {{ $notification->data['course'] }} has been rejected. Please try again or contact support.
                                             @elseif($notification->type === \App\Notifications\AccountVerified::class)
                                                 Your account has been verified. You can now teach in our platform.
                                             @elseif($notification->type === \App\Notifications\Enrolled::class)
@@ -137,7 +139,7 @@
                                         </span>
                                         <hr>
                                     @endforeach
-                                    <span class="dropdown-item text-light">
+                                    <span class="dropdown-item">
                                 <a href="{{ route('notifications') }}">see all notifications</a>
                             </span>
                                 </div>

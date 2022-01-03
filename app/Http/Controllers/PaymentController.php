@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Course;
 use App\Notifications\PaymentConfirmed;
 use App\Notifications\PaymentReceived;
+use App\Notifications\PaymentRejected;
 use App\Payment;
 use App\PaymentInfo;
 use Illuminate\Http\Request;
@@ -79,9 +80,12 @@ class PaymentController extends Controller
 
     public function destroy(Payment $payment)
     {
-        $payment->delete();
+        $payment->needs_verification = false;
+        $payment->save();
 
-        return redirect()->route('payment.index')->with('toast_error','Payment information deleted!');
+        $payment->user->notify(new PaymentRejected($payment));
+
+        return redirect()->route('admin.payment.index')->with('toast_info','Payment Rejected!');
     }
 
     public function verify(Course $course, Payment $payment)
@@ -94,6 +98,7 @@ class PaymentController extends Controller
         {
             $course->wishlists()->where('user_id',$payment->user->id)->first()->delete();
         }
+
         $course->students()->syncWithoutDetaching($payment->user->id);
 
         $payment->user->notify(new PaymentConfirmed($payment));

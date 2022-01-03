@@ -1,16 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container py-4">
+    <div class="container-fluid px-5 py-4">
         <div class="card">
-            <div class="card-header">
-                Admins
-            </div>
             <div class="card-body">
+                <div class="card-title">
+                    Admins
+                </div>
                 @if($admins->count()>0)
                     <div class="table-responsive-lg">
-                        <table class="table table-bordered table-striped">
-                            <thead class="thead-dark">
+                        <table class="table">
+                            <thead class="font-weight-bolder">
                             <tr>
                                 <th>#</th>
                                 <th>Name</th>
@@ -48,17 +48,12 @@
                 @else
                     <h4 class="d-flex justify-content-center">NO RECORDS FOUND</h4>
                 @endif
-            </div>
-            <div class="card-footer">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <a href="{{ route('dashboard') }}" class="btn btn-light custom">Back</a>
-                    </div>
-                    <div class="col-sm-4 d-flex justify-content-center">
+                <div class="d-flex justify-content-between">
+                    <div class="flex-column">
                         {{ $admins->links() }}
                     </div>
-                    <div class="col-sm-4">
-                        <a href="{{ route('admin.admin.create') }}" class="btn custom btn-success float-right">Create</a>
+                    <div class="flex-column">
+                        <a href="{{ route('admin.admin.create') }}" class="btn custom btn-success">Create</a>
                     </div>
                 </div>
             </div>

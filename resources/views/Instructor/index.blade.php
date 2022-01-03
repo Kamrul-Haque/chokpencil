@@ -1,16 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container py-4">
+    <div class="container-fluid px-5 py-4">
         <div class="card">
-            <div class="card-header">
-                Instructors
-            </div>
             <div class="card-body">
+                <div class="card-title">
+                    Instructors
+                </div>
                 @if($instructors->count() > 0)
                     <div class="table-responsive-lg">
-                        <table class="table table-striped table-bordered">
-                            <thead class="thead thead-dark">
+                        <table class="table">
+                            <thead class="font-weight-bolder">
                             <tr>
                                 <th>#</th>
                                 <th>Name</th>
@@ -54,16 +54,11 @@
                 @else
                     <h4 class="d-flex justify-content-center">NO RECORDS FOUND</h4>
                 @endif
-            </div>
-            <div class="card-footer">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <a href="{{ route('dashboard') }}" class="btn custom btn-light">Back</a>
-                    </div>
-                    <div class="col-sm-4 d-flex justify-content-center">
+                <div class="d-flex justify-content-between">
+                    <div class="flex-column">
                         {{ $instructors->links() }}
                     </div>
-                    <div class="col-sm-4">
+                    <div class="flex-column">
                         <a href="{{ route('admin.instructor.create') }}" class="btn custom btn-success float-right">Create</a>
                     </div>
                 </div>

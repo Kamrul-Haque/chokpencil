@@ -54,8 +54,16 @@ class StripeController extends Controller
             'account_no'=>$payment->payment_method_details->card->last4,
             'reference'=>$request->reference,
             'transaction_id'=>$payment->balance_transaction,
-            'amount'=>$request->amount
+            'amount'=>$request->amount,
+            'is_verified'=>true
         ]);
+
+        if ($course->wishlists()->where('user_id', auth()->user()->id)->first())
+        {
+            $course->wishlists()->where('user_id', auth()->user()->id)->first()->delete();
+        }
+
+        $course->students()->syncWithoutDetaching(auth()->user()->id);
 
         return back()->with('toast_success','Payment Received Successfully');
     }

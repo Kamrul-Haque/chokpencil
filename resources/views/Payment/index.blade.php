@@ -1,16 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container py-4">
+    <div class="container-fluid px-5 py-4">
         <div class="card">
-            <div class="card-header">
-                Payments
-            </div>
             <div class="card-body">
+                <div class="card-title">
+                    Payments
+                </div>
                 @if($payments->count())
                     <div class="table-responsive-lg">
-                        <table class="table table-bordered table-striped">
-                            <thead class="thead-dark">
+                        <table class="table border-bottom-0">
+                            <thead class="font-weight-bolder">
                             <tr>
                                 <th>#</th>
                                 <th>Course</th>
@@ -37,18 +37,18 @@
                                     <td>{{ $payment->reference }}</td>
                                     <td>@if($payment->is_verified) Verified @elseif($payment->needs_verification) Pending @else Rejected @endif</td>
                                     <td>
-                                        <div class="row justify-content-center">
+                                        <div class="d-flex justify-content-center">
                                             @if($payment->needs_verification)
                                             <form action="{{ route('admin.payment.verify', ['course'=>$payment->course, 'payment'=>$payment]) }}" method="post">
                                                 @csrf
-                                                <button type="submit" class="btn btn-outline-info btn-sm ml-1" title="verify">verify</button>
+                                                <button type="submit" class="btn btn-info btn-sm ml-1" title="verify">verify</button>
                                             </form>
-                                            @endif
                                             <form class="ml-1" action="{{ route('admin.payment.destroy', ['course'=>$payment->course, 'payment'=>$payment]) }}" method="post">
                                                 @method('DELETE')
                                                 @csrf
-                                                <button type="submit" class="btn btn-danger btn-sm" title="delete"><span data-feather="trash-2" style="height: 15px; width: 15px; padding: 0"></span></button>
+                                                <button type="submit" class="btn btn-danger btn-sm" title="delete">Reject</button>
                                             </form>
+                                            @endif
                                         </div>
                                     </td>
                                 </tr>
@@ -59,18 +59,8 @@
                 @else
                     <h4 class="d-flex justify-content-center">NO RECORDS FOUND</h4>
                 @endif
-            </div>
-            <div class="card-footer">
-                <div class="d-flex">
-                    <div class="flex-column">
-                        <a href="{{ route('dashboard') }}" class="btn btn-light">Back</a>
-                    </div>
-                    <div class="flex-column justify-content-center">
-                        {{ $payments->links() }}
-                    </div>
-                    <div class="flex-column">
-
-                    </div>
+                <div class="text-left">
+                    {{ $payments->links() }}
                 </div>
             </div>
         </div>

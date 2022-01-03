@@ -9,5 +9,6 @@ You payment of <strong>{{ $payment->amount }}</strong> for {{ $payment->course->
 Course Contents
 @endcomponent
 
-Thanks for your Patience. Happy Learning!
+Thanks,<br>
+{{ config('app.name') }}
 @endcomponent
