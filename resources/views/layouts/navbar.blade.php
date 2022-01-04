@@ -99,7 +99,7 @@
                             </li>
                         @endcan
                         <div class="nav-item mt-1 mx-3">
-                            <form action="{{ route('search') }}" method="post" class="position-relative">
+                            <form action="{{ route('search') }}" method="get" class="position-relative">
                                 @csrf
                                 <div class="d-flex position-relative">
                                     <input class="form-control search-box" type="search" id="search" name="search" placeholder="Search Courses..." aria-label="Search" autocomplete="off">

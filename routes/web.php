@@ -24,7 +24,7 @@ Route::group(['middleware' => 'share-data'], function () {
     Route::get('/register/instructor', 'Auth\RegisterController@instructorForm')->name('register.instructor.form');
     Route::post('/register/instructor', 'Auth\RegisterController@instructorCreate')->name('register.instructor');
     Route::get('/search-auto-complete', 'HomeController@searchAutoComplete')->name('search.auto.complete');
-    Route::post('/search', 'HomeController@search')->name('search');
+    Route::get('/search', 'HomeController@search')->name('search');
     Route::get('/contact-us', 'HomeController@contactUs')->name('contact.us');
     Route::get('/category/{category}', 'CategoryController@show')->name('category.show');
 

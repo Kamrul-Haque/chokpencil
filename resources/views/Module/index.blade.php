@@ -84,7 +84,9 @@
                                     @endcan
                                     @can('modify', $course)
                                         <a href="{{ route('course.edit', $course) }}" class="dropdown-item" title="edit">Edit</a>
-                                        <button type="button" class="dropdown-item" data-toggle="modal" data-target="#delete">Delete</button>
+                                        @if(auth()->user()->hasRole('admin'))
+                                            <button type="button" class="dropdown-item" data-toggle="modal" data-target="#delete">Delete</button>
+                                        @endif
                                         <a href="{{ route('course.add.instructor', $course) }}" class="dropdown-item">Add Instructor</a>
                                         <a href="{{ route('course.image.form', $course) }}" class="dropdown-item">Upload/Change Image</a>
                                         <a href="{{ route('module.create',$course) }}" class="dropdown-item">Create Module</a>

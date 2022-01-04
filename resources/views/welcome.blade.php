@@ -66,7 +66,7 @@
                 </h2>
 
                 <div>
-                    <form action="{{ route('search') }}" method="post" class="position-relative w-75">
+                    <form action="{{ route('search') }}" class="position-relative w-75" method="GET">
                         @csrf
                         <div class="d-flex position-relative">
                             <input class="form-control search-box" type="search" id="search" name="search" placeholder="Search Courses..." aria-label="Search" autocomplete="off">

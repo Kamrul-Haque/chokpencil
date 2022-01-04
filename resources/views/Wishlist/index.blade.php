@@ -67,7 +67,7 @@
     <div class="container-fluid pl-0 pr-0">
         <div class="jumbotron">
             <div class="container">
-                <h4 class="display-4">Wishlists</h4>
+                <h1><strong>Wishlists</strong></h1>
             </div>
         </div>
         <div class="container">

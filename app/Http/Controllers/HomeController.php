@@ -128,9 +128,9 @@ class HomeController extends Controller
         })
             ->orWhere('title', 'LIKE', "%{$string}%")
             ->orWhere('topic', 'LIKE', "%{$string}%")
-            ->paginate(10);
+            ->paginate();
 
-        return view('search', compact('courses'));
+        return view('search', compact('courses','string'));
     }
 
     public function changePassword(User $user)
