@@ -49,7 +49,7 @@
                             {{ $students->links() }}
                         </div>
                         <div class="flex-column">
-                            <a href="{{ route('admin.user.create') }}" class="btn custom btn-success float-right">Create</a>
+                            <a href="{{ route('admin.user.create') }}" class="btn custom btn-dark float-right">Create</a>
                         </div>
                     </div>
                 </div>

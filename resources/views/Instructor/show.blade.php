@@ -100,7 +100,7 @@
                                 @if(!$instructor->is_verified)
                                     <form action="{{ route('admin.instructor.verify', $instructor) }}" method="post">
                                         @csrf
-                                        <button type="submit" class="btn btn-outline-info btn-sm mr-1">Verify</button>
+                                        <button type="submit" class="btn btn-info btn-sm mr-1">Verify</button>
                                     </form>
                                 @endif
                             </div>

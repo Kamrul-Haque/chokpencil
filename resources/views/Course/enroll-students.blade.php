@@ -40,7 +40,7 @@
                         </div>
                         <hr>
                         <a href="{{ route('course.show', $course) }}" class="btn custom btn-light">Cancel</a>
-                        <button type="submit" class="btn custom btn-primary">Enroll</button>
+                        <button type="submit" class="btn custom btn-dark">Enroll</button>
                     </form>
                 </div>
             </div>

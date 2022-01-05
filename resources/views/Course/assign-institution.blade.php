@@ -19,7 +19,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn custom btn-primary">Assign</button>
+                        <button type="submit" class="btn custom btn-dark">Assign</button>
                         <a href="{{ route('course.show', $course) }}" class="btn custom btn-light">Cancel</a>
                     </div>
                 </form>

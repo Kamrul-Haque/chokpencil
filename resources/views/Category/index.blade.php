@@ -49,7 +49,7 @@
                         {{ $categories->links() }}
                     </div>
                     <div class="flex-column">
-                        <a href="{{ route('admin.category.create') }}" class="btn custom btn-success">Create</a>
+                        <a href="{{ route('admin.category.create') }}" class="btn custom btn-dark">Create</a>
                     </div>
                 </div>
             </div>

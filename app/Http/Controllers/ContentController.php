@@ -49,7 +49,6 @@ class ContentController extends Controller
         return redirect()->route('module.index', $course)->with('toast_success','Content Created Successfully!');
     }
 
-
     public function show(Course $course, Module $module, Content $content)
     {
         $this->authorize('access', $course);

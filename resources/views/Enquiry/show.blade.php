@@ -21,7 +21,7 @@
                         <label for="reply">Body</label>
                         <textarea id="reply" name="reply" rows="5" class="form-control"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-block btn-primary">Reply</button>
+                    <button type="submit" class="btn btn-block btn-dark">Reply</button>
                 </form>
             </div>
             <div class="card-footer">

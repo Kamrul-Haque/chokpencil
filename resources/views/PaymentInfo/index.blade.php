@@ -51,7 +51,7 @@
                         {{ $paymentInfos->links() }}
                     </div>
                     <div class="flex-column">
-                        <a href="{{ route('admin.payment-info.create') }}" class="btn custom btn-success">Create</a>
+                        <a href="{{ route('admin.payment-info.create') }}" class="btn custom btn-dark">Create</a>
                     </div>
                 </div>
             </div>

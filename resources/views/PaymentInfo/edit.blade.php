@@ -72,7 +72,7 @@
                     </div>
                     <div class="form-group">
                         <a href="{{ url()->previous() }}" class="btn custom btn-light">Cancel</a>
-                        <button type="submit" class="btn custom btn-primary">Submit</button>
+                        <button type="submit" class="btn custom btn-dark">Submit</button>
                     </div>
                 </form>
             </div>
