@@ -41,8 +41,7 @@ class User extends Authenticatable
     //returns an accessible http url for the asset from the storage path stored in database
     public function getProfilePhotoPathAttribute($value)
     {
-        if ($value)
-        {
+        if ($value) {
             return asset($value);
         }
     }
@@ -52,7 +51,7 @@ class User extends Authenticatable
     {
         $role = Role::where('title', $role)->first();
 
-        if($this->roles->contains($role))
+        if ($this->roles->contains($role))
             return true;
 
         return false;
@@ -71,8 +70,8 @@ class User extends Authenticatable
     public function engagement(Course $course)
     {
         return ($course->assessments->map->questions->flatten()->count() > 0) ?
-                $course->assessments->map->questions->flatten()->map->responses->flatten()->where('user_id', $this->id)->count() /
-                $course->assessments->map->questions->flatten()->count() * 100 : 0;
+            $course->assessments->map->questions->flatten()->map->responses->flatten()->where('user_id', $this->id)->count() /
+            $course->assessments->map->questions->flatten()->count() * 100 : 0;
     }
 
     public function roles()
@@ -128,5 +127,10 @@ class User extends Authenticatable
     public function payments()
     {
         return $this->hasMany(Payment::class, 'user_id');
+    }
+
+    public function notes()
+    {
+        return $this->hasMany(Note::class, 'user_id');
     }
 }

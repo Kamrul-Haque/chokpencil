@@ -14,8 +14,7 @@ class Content extends Model
     //returns an accessible http url for the asset from the storage path stored in database
     public function getFilePathAttribute($value)
     {
-        if ($value)
-        {
+        if ($value) {
             return asset($value);
         }
     }
@@ -23,13 +22,10 @@ class Content extends Model
     //parses the stored url to get only the video key needed for embedded player
     public function getVideoLinkAttribute($value)
     {
-        if(strlen($value) > 11)
-        {
-            if (preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $value, $match))
-            {
+        if (strlen($value) > 11) {
+            if (preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $value, $match)) {
                 return $match[1];
-            }
-            else
+            } else
                 return false;
         }
 
@@ -44,5 +40,10 @@ class Content extends Model
     public function threads()
     {
         return $this->hasMany(Thread::class);
+    }
+
+    public function notes()
+    {
+        return $this->hasMany(Note::class);
     }
 }

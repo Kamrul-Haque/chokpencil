@@ -45,13 +45,12 @@
             }
 
             @auth
-                @if(auth()->user()->hasRole('ADMIN'))
-                    @unless(Request::is('/'))
-                        .content-wrapper {
-                            margin-left: 15vw;
-                        }
-                    @endunless
-                @endif
+                @unless(Request::is('/'))
+                    .content-wrapper {
+                        margin-left: 15vw;
+                        margin-right: 15vw;
+                    }
+                @endunless
             @endauth
         </style>
         @yield('styles')
@@ -61,10 +60,14 @@
             @include('layouts.navbar')
             @include('sweetalert::alert')
             @auth
-                @if(auth()->user()->hasRole('ADMIN'))
+                @if(auth()->user()->hasRole('admin'))
                     @unless(Request::is('/'))
                         @include('layouts.side-bar')
                     @endunless
+                @else
+                    @if (\Request::route()->getname() == 'content.show')
+                        @include('layouts.content-nav')
+                    @endif
                 @endif
             @endauth
             <main>

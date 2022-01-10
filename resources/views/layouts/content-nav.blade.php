@@ -22,7 +22,7 @@
     #sidebar {
         position: fixed;
         top: 13vh;
-        width: 250px;
+        width: 13vw;
         min-height: 100%;
         max-height: 100%;
         background: white;
