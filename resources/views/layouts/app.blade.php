@@ -44,14 +44,27 @@
                 background-color: lightgray;
             }
 
+            @media (max-width: 992px) {
+                .container {
+                    width: 100% !important;
+                }
+            }
+
             @auth
-                @unless(Request::is('/'))
-                    .content-wrapper {
-                        margin-left: 15vw;
-                        margin-right: 15vw;
-                    }
-                @endunless
+                @if(auth()->user()->hasRole('admin'))
+                    @unless(\Request::route()->getname() == 'content.show' || \Request::route()->getname() == 'assessment.show')
+                        .content-wrapper {
+                            margin-left: 13vw;
+                        }
+                    @endif
+                @endif
             @endauth
+
+            @media screen and (max-width: 576px){
+                .content-wrapper {
+                    margin-left: 0;
+                }
+            }
         </style>
         @yield('styles')
     </head>
@@ -65,7 +78,7 @@
                         @include('layouts.side-bar')
                     @endunless
                 @else
-                    @if (\Request::route()->getname() == 'content.show')
+                    @if (\Request::route()->getname() == 'content.show' || \Request::route()->getname() == 'assessment.show')
                         @include('layouts.content-nav')
                     @endif
                 @endif

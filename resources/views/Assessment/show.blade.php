@@ -25,11 +25,6 @@
 @endsection
 
 @section('content')
-    <section>
-        @if (!auth()->user()->hasRole('ADMIN'))
-            @include('layouts.content-nav')
-        @endif
-    </section>
     <div class="container py-4">
         <div class="card">
             <div class="card-body">
@@ -167,7 +162,7 @@
         </div>
     </div>
     <section>
-        <div class="container pt-4">
+        <div class="container py-4">
             <h5 class="mb-3 text-center"><strong>Post on Discussion Panel</strong></h5>
             <form method="post" action="{{ route('thread.store', ['course'=>$course,'discussionPanel'=>$course->discussionPanel]) }}">
                 @csrf

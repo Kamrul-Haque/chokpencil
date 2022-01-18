@@ -32,8 +32,7 @@
         border-right: 1px solid lightgrey;
         z-index: 3;
         box-shadow: 1px 3px lightgray;
-        overflow-y: scroll;
-        overflow-x: hidden;
+        overflow-y: auto;
     }
     #sidebar ul.components {
         padding: 0;
@@ -70,25 +69,30 @@
         -ms-transform: translateY(-50%);
         transform: translateY(-50%);
     }
+    @media screen and (max-width: 576px){
+        #sidebar{
+            display: none;
+        }
+    }
 </style>
 <div class="d-flex">
-    <nav id="sidebar" class="pt-5">
+    <nav id="sidebar" class="pt-4">
         <ul class="list-unstyled components">
             @foreach($module->course->modules as $module)
                 <li>
                     <a href="#{{ str_replace(' ','',$module->module_name) }}" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle sidebar">
-                        <p class="col-md-10">{{ $module->module_name }}</p>
+                        <p class="col-md-10 text-wrap">{{ $module->module_name }}</p>
                     </a>
                     <ul class="collapse list-unstyled" id="{{ str_replace(' ','',$module->module_name) }}">
                         @foreach($module->contents as $content)
                             <li>
-                                <a href="{{ route('content.show', ['course'=>$module->course, 'module'=>$module, 'content'=>$content]) }}" class="child ml-3 text-wrap">{{$content->title}}</a>
+                                <a href="{{ route('content.show', ['course'=>$module->course, 'module'=>$module, 'content'=>$content]) }}" class="child ml-3 text-wrap">{{ \Str::limit($content->title, 20, '...') }}</a>
                             </li>
                         @endforeach
                         @foreach($module->assessments as $assessment)
                             @can('view', $assessment)
                             <li>
-                                <a href="{{ route('assessment.show', ['course'=>$module->course, 'module'=>$module, 'assessment'=>$assessment]) }}" class="child ml-3 text-wrap">{{ Str::limit($assessment->title, 20, '...') }}</a>
+                                <a href="{{ route('assessment.show', ['course'=>$module->course, 'module'=>$module, 'assessment'=>$assessment]) }}" class="child ml-3 text-wrap">{{ \Str::limit($assessment->title, 20, '...') }}</a>
                             </li>
                             @endcan
                         @endforeach

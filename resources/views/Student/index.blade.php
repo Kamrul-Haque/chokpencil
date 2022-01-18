@@ -1,56 +1,54 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container-fluid px-5 p-4">
-        <div class="d-flex justify-content-center">
-            <div class="card w-75">
-                <div class="card-body">
-                    <div class="card-title">
-                        Students
-                    </div>
-                    @if($students->count() > 0)
-                        <div class="table-responsive-lg">
-                            <table class="table">
-                                <thead class="font-weight-bolder">
+    <div class="container-fluid px-md-5 py-4">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-title">
+                    Students
+                </div>
+                @if($students->count() > 0)
+                    <div class="table-responsive-lg">
+                        <table class="table">
+                            <thead class="font-weight-bolder">
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Study Level</th>
+                                <th>Operations</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($students as $student)
                                 <tr>
-                                    <th>#</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Study Level</th>
-                                    <th>Operations</th>
+                                    <td> {{ $loop->index + 1 }} </td>
+                                    <td> {{ $student->name }} </td>
+                                    <td> {{ $student->email }} </td>
+                                    <td> {{ $student->study_level }} </td>
+                                    <td>
+                                        <div class="row justify-content-center">
+                                            <form class="pl-1" action="{{ route('admin.user.destroy', $student) }}" method="post">
+                                                @method('DELETE')
+                                                @csrf
+                                                <button type="submit" class="btn btn-danger btn-sm" title="delete"><span data-feather="trash-2" style="height: 15px; width: 15px; padding: 0"></span></button>
+                                            </form>
+                                        </div>
+                                    </td>
                                 </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($students as $student)
-                                    <tr>
-                                        <td> {{ $loop->index + 1 }} </td>
-                                        <td> {{ $student->name }} </td>
-                                        <td> {{ $student->email }} </td>
-                                        <td> {{ $student->study_level }} </td>
-                                        <td>
-                                            <div class="row justify-content-center">
-                                                <form class="pl-1" action="{{ route('admin.user.destroy', $student) }}" method="post">
-                                                    @method('DELETE')
-                                                    @csrf
-                                                    <button type="submit" class="btn btn-danger btn-sm" title="delete"><span data-feather="trash-2" style="height: 15px; width: 15px; padding: 0"></span></button>
-                                                </form>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    @else
-                        <h4 class="d-flex justify-content-center">NO RECORDS FOUND</h4>
-                    @endif
-                    <div class="d-flex justify-content-between">
-                        <div class="flex-column">
-                            {{ $students->links() }}
-                        </div>
-                        <div class="flex-column">
-                            <a href="{{ route('admin.user.create') }}" class="btn custom btn-dark float-right">Create</a>
-                        </div>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                @else
+                    <h4 class="d-flex justify-content-center">NO RECORDS FOUND</h4>
+                @endif
+                <div class="d-flex justify-content-between">
+                    <div class="flex-column">
+                        {{ $students->links() }}
+                    </div>
+                    <div class="flex-column">
+                        <a href="{{ route('admin.user.create') }}" class="btn custom btn-dark float-right">Create</a>
                     </div>
                 </div>
             </div>

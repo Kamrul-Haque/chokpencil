@@ -20,8 +20,7 @@
     }
     #sidebar {
         position: fixed;
-        margin-top: 0.15%;
-        width: 15vw;
+        width: 13vw;
         min-height: 100%;
         max-height: 100%;
         background: #23272b;
@@ -32,7 +31,8 @@
         border-right: 1px solid rgba(255, 255, 255, 0.1);
         z-index: 3;
         box-shadow: 1px 3px rgba(255, 255, 255, 0.1);
-        overflow-y: scroll;
+        overflow-y: auto;
+        overflow-x: hidden;
     }
     #sidebar ul.components {
         padding: 0;
@@ -50,7 +50,7 @@
         padding: 15px 0;
         display: block;
         color: rgba(255, 255, 255, 0.8);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        /*border-bottom: 1px solid rgba(255, 255, 255, 0.1);*/
     }
     #sidebar ul li a:hover {
         color: dodgerblue;
@@ -75,11 +75,16 @@
     .last:hover{
         color: white;
     }
+    @media screen and (max-width: 576px){
+        #sidebar{
+            display: none;
+        }
+    }
 </style>
 <div class="wrapper d-flex align-items-stretch">
     <nav id="sidebar" class="add-padding pt-4">
-        <div class="p-3">
-            <ul class="list-unstyled components mb-5 pt-2">
+        <div class="px-3">
+            <ul class="list-unstyled components mb-5">
                 <li class="active">
                     <a href="#subjectSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle sidebar">Categories</a>
                     <ul class="collapse list-unstyled" id="subjectSubmenu">
