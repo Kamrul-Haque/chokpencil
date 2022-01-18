@@ -133,4 +133,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Note::class, 'user_id');
     }
+
+    public function interests()
+    {
+        return $this->hasMany(Interest::class,'user_id');
+    }
 }

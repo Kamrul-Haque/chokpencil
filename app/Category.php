@@ -24,4 +24,9 @@ class Category extends Model
     {
         return $this->hasMany(Course::class);
     }
+
+    public function interests()
+    {
+        return $this->hasMany(Interest::class);
+    }
 }

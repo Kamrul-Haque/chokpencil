@@ -24,8 +24,20 @@ class HomeController extends Controller
     public function dashboard()
     {
         if (auth()->user()->hasRole('student')) {
-            $courses = auth()->user()->coursesEnrolled;
-            return view('Student.dashboard', compact('courses'));
+            if (auth()->user()->interests->count())
+            {
+                $courses = auth()->user()->coursesEnrolled;
+                $recommendations = Course::where('level', auth()->user()->study_level)
+                                        ->whereIn('category_id', auth()->user()->interests->pluck('category_id')->flatten())
+                                        ->whereNotIn('id', auth()->user()->coursesEnrolled->pluck('id')->flatten())
+                                        ->limit(5)->get();
+                return view('Student.dashboard', compact('courses','recommendations'));
+            }
+            else
+            {
+                $categories = Category::orderBy('name')->get();
+                return view('Student.interests', compact('categories'));
+            }
         } elseif (auth()->user()->hasRole('instructor')) {
             $courses = auth()->user()->coursesOwned;
             return view('Instructor.dashboard', compact('courses'));

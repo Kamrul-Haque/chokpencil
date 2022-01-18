@@ -74,10 +74,12 @@ Route::group(['middleware' => 'share-data'], function () {
         Route::get('/profile', 'HomeController@profile')->name('profile');
         Route::get('/profile/edit', 'HomeController@editProfile')->name('profile.edit');
         Route::post('/profile/update', 'HomeController@updateProfile')->name('profile.update');
-        Route::get('user/{user}/upload-photo', 'HomeController@uploadPhotoForm')->name('photo.upload.form');
-        Route::post('user/{user}/upload-photo', 'HomeController@uploadPhoto')->name('photo.upload');
-        Route::get('user/{user}/password-change', 'HomeController@changePassword')->name('password.change');
-        Route::post('user/{user}/password-update', 'HomeController@updatePassword')->name('password.update');
+        Route::get('/user/{user}/upload-photo', 'HomeController@uploadPhotoForm')->name('photo.upload.form');
+        Route::post('/user/{user}/upload-photo', 'HomeController@uploadPhoto')->name('photo.upload');
+        Route::get('/user/{user}/password-change', 'HomeController@changePassword')->name('password.change');
+        Route::post('/user/{user}/password-update', 'HomeController@updatePassword')->name('password.update');
+        Route::get('/interests','InterestController@create')->name('interests.create');
+        Route::post('/interests','InterestController@store')->name('interests.store');
         Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
         Route::resource('/instructor/{instructor}/documents', 'InstructorDocumentController')->except('show', 'edit', 'update')->middleware('allow:admin,instructor');
     });
