@@ -89,27 +89,81 @@
                 </div>
             </main>
         </div>
+        <footer>
+            @guest
+                @include('layouts.footer')
+            @else
+                @include('layouts.copyright')
+            @endguest
+        </footer>
+        <script>
+            feather.replace();
+            Array.from(document.querySelectorAll('svg.feather[title]')).forEach((element) => {
+                element.insertAdjacentHTML('afterbegin', `<title>${element.attributes.title.value}</title>`);
+            });
+        </script>
+        <script type="text/javascript">
+            $('textarea.editor').ckeditor();
+        </script>
+        <script type="text/javascript">
+            $(function (){
+                $("[data-toggle=popover]").popover();
+            });
+        </script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                notifications();
+
+                function result(query = '') {
+                    if (query.length>2)
+                    {
+                        var route = "{{ route('search.auto.complete') }}";
+                        var search = query;
+
+                        $.ajax({
+                            url: route,
+                            method: "GET",
+                            data: {search:search},
+                            success: function (response){
+                                $('#suggestions').html(response);
+                            }
+                        });
+                    }
+                    else $('#suggestions').html('');
+                }
+                $(document).on('keyup', '#search', function(){
+                    var query = $(this).val();
+                    result(query);
+                });
+
+                function notifications(){
+                    var route = "{{ route('unread.notifications') }}";
+
+                    $.ajax({
+                        url: route,
+                        method: "GET",
+                        success: function (response){
+                            $('#notification-list').html(response.output);
+
+                            if (response.count)
+                                $('#notification-count').html(response.count);
+                            else
+                                $('#notification-count').html('');
+                        }
+                    });
+                }
+                $('#notification').on('hidden.bs.dropdown', function(){
+                    var route = "{{ route('read.notifications') }}";
+
+                    $.ajax({
+                        url: route,
+                        method: "GET",
+                    });
+
+                    notifications();
+                });
+            });
+        </script>
+        @yield('scripts')
     </body>
-    <footer>
-        @guest
-            @include('layouts.footer')
-        @else
-            @include('layouts.copyright')
-        @endguest
-    </footer>
-    <script>
-        feather.replace();
-        Array.from(document.querySelectorAll('svg.feather[title]')).forEach((element) => {
-            element.insertAdjacentHTML('afterbegin', `<title>${element.attributes.title.value}</title>`);
-        });
-    </script>
-    <script type="text/javascript">
-        $('textarea.editor').ckeditor();
-    </script>
-    <script type="text/javascript">
-        $(function (){
-            $("[data-toggle=popover]").popover();
-        });
-    </script>
-    @yield('scripts')
 </html>

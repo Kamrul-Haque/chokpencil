@@ -113,35 +113,13 @@
                             </form>
                         </div>
                         <div class="nav-item dropdown" id="notification">
-                            <a class="nav-link notification-button" type="button" id="notificationButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                               onclick="{{ auth()->user()->unreadNotifications->markAsRead() }}">
+                            <a class="nav-link notification-button" type="button" id="notificationButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span data-feather="bell" class="notification-icon"></span>
-                                @if(auth()->user()->unreadNotifications->count())
-                                    <span class="badge badge-danger">{{ auth()->user()->unreadNotifications->count() }}</span>
-                                @endif
+                                <span class="badge badge-danger" id="notification-count"></span>
                             </a>
                             <div>
-                                <div class="dropdown-menu dropdown-menu-right bg-light border-0" aria-labelledby="notificationButton">
-                                    @foreach(auth()->user()->unreadNotifications as $notification)
-                                        <span class="dropdown-item">
-                                            @if($notification->type === \App\Notifications\PaymentReceived::class)
-                                                Your Payment of {{ $notification->data['amount'] }} for {{ $notification->data['course'] }}
-                                                <br>has been received. Check email for details.
-                                            @elseif($notification->type === \App\Notifications\PaymentConfirmed::class)
-                                                Your Payment for {{ $notification->data['course'] }} has been confirmed. You are now enrolled into the course.
-                                            @elseif($notification->type === \App\Notifications\PaymentRejected::class)
-                                                Your Payment for {{ $notification->data['course'] }} has been rejected. Please try again or contact support.
-                                            @elseif($notification->type === \App\Notifications\AccountVerified::class)
-                                                Your account has been verified. You can now teach in our platform.
-                                            @elseif($notification->type === \App\Notifications\Enrolled::class)
-                                                You have been enrolled into the course {{ $notification->data['course'] }}.
-                                            @endif
-                                        </span>
-                                        <hr>
-                                    @endforeach
-                                    <span class="dropdown-item">
-                                <a href="{{ route('notifications') }}">see all notifications</a>
-                            </span>
+                                <div class="dropdown-menu dropdown-menu-right bg-light border-0" aria-labelledby="notificationButton" id="notification-list">
+
                                 </div>
                             </div>
                         </div>
@@ -175,32 +153,3 @@
         </div>
     </nav>
 </header>
-<script type="text/javascript">
-    $(document).ready(function () {
-        function result(query = '') {
-            if (query.length>2)
-            {
-                var route = "{{ route('search.auto.complete') }}";
-                var search = query;
-
-                $.ajax({
-                    url: route,
-                    method: "GET",
-                    data: {search:search},
-                    success: function (response){
-                        console.log(response);
-                        $('#suggestions').html(response);
-                    }
-                });
-            }
-            else $('#suggestions').html('');
-        }
-        $(document).on('keyup', '#search', function(){
-            var query = $(this).val();
-            result(query);
-        });
-        $('#notification').on('hidden.bs.dropdown', function(){
-            location.reload();
-        });
-    });
-</script>

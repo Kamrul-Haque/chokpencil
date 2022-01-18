@@ -151,6 +151,62 @@ class HomeController extends Controller
         return redirect()->route('profile')->with('toast_success', 'Password Updated Successfully');
     }
 
+    public function unreadNotifications()
+    {
+        $output = '';
+        $count = 0;
+
+        foreach(auth()->user()->unreadNotifications as $notification)
+        {
+            if($notification->type === \App\Notifications\PaymentReceived::class)
+                $output .= '<span class="dropdown-item">
+                                Your Payment of '. $notification->data['amount'] .' for '. $notification->data['course'] .'
+                                <br>has been received. Check email for details.
+                            </span>
+                            <hr>';
+
+            elseif($notification->type === \App\Notifications\PaymentConfirmed::class)
+                $output .= '<span class="dropdown-item">
+                                Your Payment for'. $notification->data['course'] .'<br> has been confirmed. You are now enrolled into the course.
+                            </span>
+                            <hr>';
+
+            elseif($notification->type === \App\Notifications\PaymentRejected::class)
+                $output .= '<span class="dropdown-item">
+                                Your Payment for '. $notification->data['course'] .'<br> has been rejected. Please try again or contact support.
+                            </span>
+                            <hr>';
+
+            elseif($notification->type === \App\Notifications\AccountVerified::class)
+                $output .= '<span class="dropdown-item">
+                                Your account has been verified. You can now teach in our platform.
+                            </span>
+                            <hr>';
+
+            elseif($notification->type === \App\Notifications\Enrolled::class)
+                $output .= '<span class="dropdown-item">
+                                You have been enrolled into the course '. $notification->data['course'] .'.
+                            </span>
+                            <hr>';
+
+            $count++;
+        }
+
+        $output .= '<span class="dropdown-item">
+                            <a href="'. route('notifications') .'">see all notifications</a>
+                        </span>';
+
+        return $data = [
+            'output'=>$output,
+            'count'=>$count
+        ];
+    }
+
+    public function readNotifications()
+    {
+        auth()->user()->unreadNotifications->markAsRead();
+    }
+
     public function notifications()
     {
         return view('notifications');

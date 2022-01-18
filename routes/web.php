@@ -68,6 +68,8 @@ Route::group(['middleware' => 'share-data'], function () {
         Route::resource('/user', 'UserController')->only('edit', 'update');
 
         Route::get('/notifications', 'HomeController@notifications')->name('notifications');
+        Route::get('/unread-notifications', 'HomeController@unreadNotifications')->name('unread.notifications');
+        Route::get('/read-notifications', 'HomeController@readNotifications')->name('read.notifications');
 
         Route::get('/profile', 'HomeController@profile')->name('profile');
         Route::get('/profile/edit', 'HomeController@editProfile')->name('profile.edit');
