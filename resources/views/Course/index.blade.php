@@ -36,6 +36,7 @@
         }
         a.course-title{
             font-family: Helvetica;
+            text-transform: uppercase;
             color: dodgerblue;
         }
         a.course-title:hover,a.course-title:focus{
@@ -103,8 +104,8 @@
                                 <p title="enrolled"><span data-feather="users" class="pr-2" title="enrolled"></span> {{ $course->students()->count() }}</p>
                                 <p title="completed"><span data-feather="check-circle" class="pr-2" title="completed"></span> {{ $course->students()->where('has_completed', true)->count() }}</p>
                             </div>
-                            <h5><strong>{{ $course->category->name }}</strong></h5>
-                            <h6>{{ $course->topic }}</h6>
+                            <h5 class="text-uppercase"><strong>{{ $course->category->name }}</strong></h5>
+                            <h6 class="text-lowercase">{{ $course->topic }}</h6>
                             @if($course->instructors()->exists())
                                 <br>
                                 <h6 class="mt-3">Offered by
@@ -120,17 +121,12 @@
                             @endif
                             <p><span data-feather="tag" class="pr-1 @if(!($course->fee)) disabled @endif" title="fee"></span> {{ ($course->fee) ? $course->fee." ".$course->currency : "Free"}}</p>
                             <p><span data-feather="award" class="pr-1 @if(!($course->has_certificate)) disabled @endif" title="certificate"></span> {{ ($course->has_certificate) ? "Offers Certificate" : "No Certificate"}}</p>
+
                             @guest
-                                <form action="{{ route('course.enroll', $course) }}" method="post">
-                                    @csrf
-                                    <button type="submit" class="btn btn-block btn-primary btn-enroll btn-lg mt-1 mb-1"><strong>ENROLL</strong></button>
-                                </form>
+                                <a href="{{ route('guest.course.show', $course) }}" class="btn btn-block btn-primary btn-enroll btn-lg mt-1 mb-1"><strong>ENROLL</strong></a>
                             @else
                                 @can('enroll', $course)
-                                    <form action="{{ route('course.enroll', $course) }}" method="post">
-                                        @csrf
-                                        <button type="submit" class="btn btn-block btn-primary btn-enroll btn-lg mt-1 mb-1"><strong>ENROLL</strong></button>
-                                    </form>
+                                    <a href="{{ route('course.show', $course) }}" class="btn btn-block btn-primary btn-enroll btn-lg mt-1 mb-1"><strong>ENROLL</strong></a>
                                 @elsecan('access', $course)
                                     <a href="{{ route('module.index', $course) }}" class="btn btn-block btn-primary btn-enroll btn-lg mt-1 mb-1"><strong>RESUME</strong></a>
                                 @else

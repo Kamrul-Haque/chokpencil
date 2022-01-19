@@ -26,6 +26,7 @@
         }
         .course-title{
             color: dodgerblue;
+            text-transform: uppercase;
             font-weight: 900;
         }
         .btn-enroll{
@@ -169,6 +170,9 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8">
+                        <h2 class="pb-2 headings">COURSE TOPIC</h2>
+                        <h5>{{ $course->topic }}</h5>
+                        <br>
                         <h2 class="pb-2 headings">COURSE DESCRIPTION</h2>
                         <div>
                             <h5 class="contents">{!! $course->description !!}</h5>
@@ -208,16 +212,8 @@
                     <div class="col-md-4">
                         <div class="card">
                             <div class="card-body">
-                                <h4><span data-feather="book-open" title="level" style="height: 23px; width: auto"></span> CATEGORY: {{ $course->category->name }}</h4>
-                                <h5></h5>
+                                <h5><span data-feather="book-open" title="level" style="height: 23px; width: auto"></span> CATEGORY: {{ $course->category->name }}</h5>
                                 <br>
-                                <h4><span data-feather="pie-chart" title="level" style="height: 23px; width: auto"></span> TOPIC: {{ $course->topic }}</h4>
-                                <h5></h5>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="card">
-                            <div class="card-body">
                                 <h5><span data-feather="book" title="level"></span> LEVEL: {{ $course->level }}</h5>
                                 <br>
                                 <h5><span data-feather="clock" title="duration"></span> DURATION: {{ $course->duration }}</h5>

@@ -36,6 +36,7 @@
         }
         a.course-title{
             font-family: Helvetica;
+            text-transform: uppercase;
             color: dodgerblue;
         }
         a.course-title:hover,a.course-title:focus{
@@ -88,23 +89,17 @@
                                 @endif
                             </div>
                             <div class="col-md-7">
-                                @guest
-                                    <a href="{{ route('guest.course.show', $wishlist->course) }}" class="course-title">
-                                        <h3>{{ $wishlist->course->title }}</h3>
-                                    </a>
-                                @else
-                                    <a href="{{ route('course.show', $wishlist->course) }}" class="course-title">
-                                        <h3>{{ $wishlist->course->title }}</h3>
-                                    </a>
-                                @endguest
+                                <a href="{{ route('course.show', $wishlist->course) }}" class="course-title">
+                                    <h3>{{ $wishlist->course->title }}</h3>
+                                </a>
                                 <hr>
                                 <div class="d-flex justify-content-between">
                                     <p title="rating"><span data-feather="star" class="pr-2" title="rating"></span>{{ number_format($wishlist->course->ratings()->avg('rating'), 2, '.', ',') }}/10 ({{ $wishlist->course->ratings()->count() }})</p>
                                     <p title="enrolled"><span data-feather="users" class="pr-2" title="enrolled"></span> {{ $wishlist->course->students()->count() }}</p>
                                     <p title="completed"><span data-feather="check-circle" class="pr-2" title="completed"></span> {{ $wishlist->course->students()->where('has_completed', true)->count() }}</p>
                                 </div>
-                                <h5><strong>{{ $wishlist->course->category->name }}</strong></h5>
-                                <h6>{{ $wishlist->course->topic }}</h6>
+                                <h5 class="text-uppercase"><strong>{{ $wishlist->course->category->name }}</strong></h5>
+                                <h6 class="text-lowercase">{{ $wishlist->course->topic }}</h6>
                                 @if($wishlist->course->instructors()->exists())
                                     <br>
                                     <h6 class="mt-3">Offered by
@@ -120,36 +115,14 @@
                                 @endif
                                 <p><span data-feather="tag" class="pr-1 @if(!($wishlist->course->fee)) disabled @endif" title="fee"></span> {{ ($wishlist->course->fee) ? $wishlist->course->fee." ".$wishlist->course->currency : "Free"}}</p>
                                 <p><span data-feather="award" class="pr-1 @if(!($wishlist->course->has_certificate)) disabled @endif" title="certificate"></span> {{ ($wishlist->course->has_certificate) ? "Offers Certificate" : "No Certificate"}}</p>
-                                @guest
-                                    <form action="{{ route('course.enroll', $wishlist->course) }}" method="post">
-                                        @csrf
-                                        <button type="submit" class="btn btn-block btn-primary btn-enroll btn-lg mt-1 mb-1"><strong>ENROLL</strong></button>
-                                    </form>
-                                @else
-                                    @can('enroll', $wishlist->course)
-                                        <form action="{{ route('course.enroll', $wishlist->course) }}" method="post">
-                                            @csrf
-                                            <button type="submit" class="btn btn-block btn-primary btn-enroll btn-lg mt-1 mb-1"><strong>ENROLL</strong></button>
-                                        </form>
-                                    @elsecan('access', $wishlist->course)
-                                        <a href="{{ route('module.index', $wishlist->course) }}" class="btn btn-block btn-primary btn-enroll btn-lg mt-1 mb-1"><strong>RESUME</strong></a>
-                                    @else
-                                        <button type="button" class="btn btn-block btn-primary btn-enroll btn-lg mt-1 mb-1" disabled><strong>ENROLL</strong></button>
-                                    @endif
-                                @endguest
 
-                                @can('wishlist', $wishlist->course)
-                                    <form action="{{ route('wishlist', $wishlist->course) }}" method="post">
-                                        @csrf
-                                        <button type="submit" class="text-danger wishlist-button"><span data-feather="bookmark" class="pr-2"></span>wishlist for later</button>
-                                    </form>
-                                @elsecan('removeWishlist', $wishlist->course)
-                                    <form action="{{ route('wishlist.remove', $wishlist->course->wishlists()->where('user_id', auth()->user()->id)->first()) }}" method="post">
-                                        @method('DELETE')
-                                        @csrf
-                                        <button type="submit" class="text-danger wishlist-button">remove from wishlist</button>
-                                    </form>
-                                @endcan
+                                <a href="{{ route('course.show', $wishlist->course) }}" class="btn btn-block btn-primary btn-enroll btn-lg mt-1 mb-1"><strong>ENROLL</strong></a>
+
+                                <form action="{{ route('wishlist.remove', $wishlist->course->wishlists()->where('user_id', auth()->user()->id)->first()) }}" method="post">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button type="submit" class="text-danger wishlist-button">remove from wishlist</button>
+                                </form>
                             </div>
                         </div>
                     </div>

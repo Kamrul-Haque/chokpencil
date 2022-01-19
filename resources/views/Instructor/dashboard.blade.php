@@ -21,16 +21,15 @@
                 <div class="card">
                     <div class="card-body">
                         <a href="{{ route('course.show', $course) }}" class="course-title">
-                            <h2>{{ $course->title }}</h2>
+                            <h3>{{ $course->title }}</h3>
                         </a>
                         <hr>
-                        <h3>{{ $course->category->name }}</h3>
-                        <h5>{{ $course->topic }}</h5>
-                        <div class="row">
-                            <p title="rating" class="col-md-3"><span data-feather="star" class="pr-2" title="rating"></span>{{ number_format($course->ratings()->avg('rating'), 2, '.', ',') }}</p>
-                            <p title="reviewers" class="col-md-3"><span data-feather="trending-up" class="pr-2" title="reviewers"></span> {{ $course->ratings()->count() }}</p>
-                            <p title="enrolled" class="col-md-3"><span data-feather="users" class="pr-2" title="enrolled"></span> {{ $course->students()->count() }}</p>
-                            <p title="completed" class="col-md-3"><span data-feather="check-circle" class="pr-2" title="completed"></span> {{ $course->students()->where('has_completed', true)->count() }}</p>
+                        <h5>{{ $course->category->name }}</h5>
+                        <h6>{{ $course->topic }}</h6>
+                        <div class="d-flex justify-content-between">
+                            <p title="rating"><span data-feather="star" class="pr-2" title="rating"></span>{{ number_format($course->ratings()->avg('rating'), 2, '.', ',') }}/10 ({{ $course->ratings()->count() }})</p>
+                            <p title="enrolled"><span data-feather="users" class="pr-2" title="enrolled"></span> {{ $course->students()->count() }}</p>
+                            <p title="completed"><span data-feather="check-circle" class="pr-2" title="completed"></span> {{ $course->students()->where('has_completed', true)->count() }}</p>
                         </div>
                         <hr>
                         <div>
