@@ -98,6 +98,9 @@
                                         @can('assignInstitution', $course)
                                             <a href="{{ route('admin.course.assign.institution', $course) }}" class="dropdown-item">Assign Institution</a>
                                         @endcan
+                                        @unless($course->certificates()->count())
+                                            <a href="{{ route('certificate.create', $course) }}" class="dropdown-item">Issue Certificate</a>
+                                        @endunless
                                     @endif
                                 </div>
                             </div>
@@ -255,6 +258,15 @@
                 <h4>No Module Yet</h4>
             </div>
         @endforelse
+        @if($course->certificates()->where('user_id', auth()->user()->id)->first())
+            <div class="card">
+                <div class="card-body">
+                    <p>Congratulations! You have completed the course with the required marks. It's time to add to your achievements</p>
+                    <br>
+                    <a href="{{ route('certificate.show', ['course'=>$course, 'certificate'=>$course->certificates()->where('user_id', auth()->user()->id)->first()]) }}" class="btn btn-block btn-primary">Download Certificate</a>
+                </div>
+            </div>
+        @endif
     </div>
     @component('components.modal')
         @slot('id') unEnroll @endslot

@@ -37,9 +37,9 @@
                                     <td> {{ $instructor->institution }} </td>
                                     <td> @if($instructor->is_verified) true @else false @endif </td>
                                     <td>
-                                        <div class="row justify-content-center">
-                                            <a href="{{ route('admin.instructor.show', $instructor) }}" class="btn btn-dark btn-sm" title="view"><span data-feather="eye" style="height: 15px; width: 15px; padding: 0"></span></a>
-                                            <form class="pl-1" action="{{ route('admin.instructor.destroy', $instructor) }}" method="post">
+                                        <div class="d-flex justify-content-center">
+                                            <a href="{{ route('admin.instructor.show', $instructor) }}" class="flex-column btn btn-dark btn-sm" title="view"><span data-feather="eye" style="height: 15px; width: 15px; padding: 0"></span></a>
+                                            <form class="flex-column pl-1" action="{{ route('admin.instructor.destroy', $instructor) }}" method="post">
                                                 @method('DELETE')
                                                 @csrf
                                                 <button type="submit" class="btn btn-danger btn-sm" title="delete"><span data-feather="trash-2" style="height: 15px; width: 15px; padding: 0"></span></button>

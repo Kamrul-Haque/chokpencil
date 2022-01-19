@@ -16,7 +16,7 @@
                                 <th>User Phone</th>
                                 <th>Course</th>
                                 <th>Subject</th>
-                                <th>Message</th>
+                                <th class="text-center">Message</th>
                                 <th class="text-center">Operations</th>
                             </tr>
                         </thead>

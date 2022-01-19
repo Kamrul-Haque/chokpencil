@@ -16,7 +16,7 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Study Level</th>
-                                <th>Operations</th>
+                                <th class="text-center">Operations</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -27,8 +27,8 @@
                                     <td> {{ $student->email }} </td>
                                     <td> {{ $student->study_level }} </td>
                                     <td>
-                                        <div class="row justify-content-center">
-                                            <form class="pl-1" action="{{ route('admin.user.destroy', $student) }}" method="post">
+                                        <div class="d-flex justify-content-center">
+                                            <form class="flex-column pl-1" action="{{ route('admin.user.destroy', $student) }}" method="post">
                                                 @method('DELETE')
                                                 @csrf
                                                 <button type="submit" class="btn btn-danger btn-sm" title="delete"><span data-feather="trash-2" style="height: 15px; width: 15px; padding: 0"></span></button>

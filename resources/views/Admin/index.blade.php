@@ -29,11 +29,11 @@
                                     <td> {{ $admin->job_title }} </td>
                                     <td> {{ $admin->phone }} </td>
                                     <td>
-                                        <div class="row justify-content-center">
-                                            <div class="pl-1">
+                                        <div class="d-flex justify-content-center">
+                                            <div class="pl-1 flex-column">
                                                 <a class="btn btn-primary btn-sm" href="{{ route('admin.admin.edit', $admin) }}" title="edit"><span data-feather="edit" style="height: 15px; width: 15px; padding: 0"></span></a>
                                             </div>
-                                            <form class="pl-1" action="{{ route('admin.admin.destroy', $admin) }}" method="post">
+                                            <form class="pl-1 flex-column" action="{{ route('admin.admin.destroy', $admin) }}" method="post">
                                                 @method('DELETE')
                                                 @csrf
                                                 <button type="submit" class="btn btn-danger btn-sm" title="delete"><span data-feather="trash-2" style="height: 15px; width: 15px; padding: 0"></span></button>

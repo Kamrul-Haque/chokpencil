@@ -64,6 +64,8 @@ Route::group(['middleware' => 'share-data'], function () {
         Route::get('/course/{course}/students-report', 'CourseController@studentsReport')->name('course.students.report')->middleware('allow:admin,instructor');
         Route::get('/course/{course}/student/{student}/assignments', 'CourseController@studentAssignments')->name('course.students.assignments')->middleware('allow:admin,instructor');
         Route::post('/content/{content}/note', 'NoteController@save')->name('note.save')->middleware('allow:student');
+        Route::resource('/course/{course}/certificate','CertificateController')->only('create','store','show');
+
         Route::resource('/instructor', 'InstructorController')->only('edit', 'update');
         Route::resource('/user', 'UserController')->only('edit', 'update');
 

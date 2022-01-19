@@ -28,7 +28,7 @@
         </div>
         <div class="container py-4">
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-3 pb-4 pb-md-0">
                     <div class="list-group">
                         <h4>Filter</h4>
                         <div class="list-group-item">

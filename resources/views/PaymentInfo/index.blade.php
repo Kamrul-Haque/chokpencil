@@ -27,11 +27,11 @@
                                     <td>{{ $paymentInfo->account_no }}</td>
                                     <td>{{ $paymentInfo->account_type }}</td>
                                     <td>
-                                        <div class="row justify-content-center">
-                                            <div>
+                                        <div class="d-flex justify-content-center">
+                                            <div class="flex-column">
                                                 <a class="btn btn-primary btn-sm" href="{{ route('admin.payment-info.edit', $paymentInfo) }}" title="edit"><span data-feather="edit" style="height: 15px; width: 15px; padding: 0"></span></a>
                                             </div>
-                                            <form class="pl-1" action="{{ route('admin.payment-info.destroy', $paymentInfo) }}" method="post">
+                                            <form class="flex-column pl-1" action="{{ route('admin.payment-info.destroy', $paymentInfo) }}" method="post">
                                                 @method('DELETE')
                                                 @csrf
                                                 <button type="submit" class="btn btn-danger btn-sm" title="delete"><span data-feather="trash-2" style="height: 15px; width: 15px; padding: 0"></span></button>

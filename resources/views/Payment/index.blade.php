@@ -41,9 +41,9 @@
                                             @if($payment->needs_verification)
                                             <form action="{{ route('admin.payment.verify', ['course'=>$payment->course, 'payment'=>$payment]) }}" method="post">
                                                 @csrf
-                                                <button type="submit" class="btn btn-info btn-sm ml-1" title="verify">verify</button>
+                                                <button type="submit" class="flex-column btn btn-info btn-sm ml-1" title="verify">verify</button>
                                             </form>
-                                            <form class="ml-1" action="{{ route('admin.payment.destroy', ['course'=>$payment->course, 'payment'=>$payment]) }}" method="post">
+                                            <form class="flex-column ml-1" action="{{ route('admin.payment.destroy', ['course'=>$payment->course, 'payment'=>$payment]) }}" method="post">
                                                 @method('DELETE')
                                                 @csrf
                                                 <button type="submit" class="btn btn-danger btn-sm" title="delete">Reject</button>

@@ -138,4 +138,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Interest::class,'user_id');
     }
+
+    public function certificates()
+    {
+        return $this->hasMany(Certificate::class,'user_id');
+    }
 }
