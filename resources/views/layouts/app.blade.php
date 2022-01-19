@@ -52,9 +52,9 @@
 
             @auth
                 @if(auth()->user()->hasRole('admin'))
-                    @unless(\Request::route()->getname() == 'content.show' || \Request::route()->getname() == 'assessment.show')
+                    @if(\Request::is('dashboard')||\Request::is('admin*'))
                         .content-wrapper {
-                            margin-left: 13vw;
+                            margin-left: 175px;
                         }
                     @endif
                 @endif
@@ -74,9 +74,9 @@
             @include('sweetalert::alert')
             @auth
                 @if(auth()->user()->hasRole('admin'))
-                    @unless(Request::is('/'))
+                    @if(\Request::is('dashboard')||\Request::is('admin*'))
                         @include('layouts.side-bar')
-                    @endunless
+                    @endif
                 @else
                     @if (\Request::route()->getname() == 'content.show' || \Request::route()->getname() == 'assessment.show')
                         @include('layouts.content-nav')
@@ -161,6 +161,10 @@
                     });
 
                     notifications();
+                });
+
+                $('#side-bar-collapse').click(function (){
+                    $('#sidebar').toggleClass('open');
                 });
             });
         </script>

@@ -21,7 +21,6 @@
     }
     #sidebar {
         position: fixed;
-        top: 13vh;
         width: 13vw;
         min-height: 100%;
         max-height: 100%;
@@ -71,8 +70,16 @@
     }
     @media screen and (max-width: 576px){
         #sidebar{
-            display: none;
+            position: absolute;
+            z-index: 9999;
+            width: 200px;
+            transition: width 0.5s ease-in-out;
         }
+    }
+
+    .open{
+        width: 0 !important;
+        border: 0 !important;
     }
 </style>
 <div class="d-flex">

@@ -28,29 +28,30 @@
         </div>
     </nav>
 
-    <nav
-        class="
-					navbar navbar-expand-lg
-					shadow
-					navbar-light
-					bg-light
-					d-flex
-					justify-content-between
-				"
-    >
+    <nav class="navbar navbar-expand-lg
+			    shadow
+				navbar-light
+				bg-light
+				d-flex
+				justify-content-between">
         <div class="container-fluid nav-container">
+            @auth
+                @if(auth()->user()->hasRole('admin') || \Request::route()->getname() == 'content.show' || \Request::route()->getname() == 'assessment.show')
+                    <button id="side-bar-collapse" class="navbar-toggler">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                @endif
+            @endauth
             <a class="navbar-brand" href="{{ config('app.url') }}">
                 <img src="{{ asset('images/logo.png') }}" alt="{{ config('app.name', 'Laravel') }}" class="py-2" height="50px" width="auto">
             </a>
-            <button
-                class="navbar-toggler"
-                type="button"
-                data-toggle="collapse"
-                data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-            >
+            <button class="navbar-toggler"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 

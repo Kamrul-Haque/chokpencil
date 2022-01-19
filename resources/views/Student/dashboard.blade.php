@@ -18,7 +18,7 @@
             @foreach($courses->chunk(3) as $courseChunks)
                 <div class="row">
                     @foreach($courseChunks as $course)
-                        <div class="col-md-4">
+                        <div class="col-md-4 pb-3 pb-md-0">
                             <div class="card">
                                 <div class="card-body">
                                     <a href="{{ route('course.show', $course) }}" class="course-title">
@@ -53,7 +53,7 @@
             <br>
             <div class="row">
                 @foreach($recommendations as $recommendation)
-                    <div class="col-md-4">
+                    <div class="col-md-4 pb-3 pb-md-0">
                         <div class="card">
                             <div class="card-body">
                                 <a href="{{ route('course.show', $recommendation) }}" class="course-title">

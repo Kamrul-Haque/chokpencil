@@ -20,7 +20,7 @@
     }
     #sidebar {
         position: fixed;
-        width: 13vw;
+        width: 175px;
         min-height: 100%;
         max-height: 100%;
         background: #23272b;
@@ -77,8 +77,14 @@
     }
     @media screen and (max-width: 576px){
         #sidebar{
-            display: none;
+            position: absolute;
+            z-index: 9999;
+            transition: width 0.5s ease-in-out;
         }
+    }
+    .open{
+        width: 0 !important;
+        border: 0 !important;
     }
 </style>
 <div class="wrapper d-flex align-items-stretch">
@@ -182,33 +188,3 @@
         </div>
     </nav>
 </div>
-{{--<script>
-    function openNav() {
-        document.getElementById("mySidenav").style.width = "250px";
-        document.getElementById("main").style.marginLeft = "250px";
-        document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
-    }
-
-    function closeNav() {
-        document.getElementById("mySidenav").style.width = "0";
-        document.getElementById("main").style.marginLeft= "0";
-        document.body.style.backgroundColor = "white";
-    }
-
-    $(document).ready(function (){
-        if ($(window).scrollTop() >= 50) {
-            $('#sidebar').removeClass('add-padding');
-        }
-        else {
-            $('#sidebar').addClass('add-padding');
-        }
-        $(window).scroll(function(){
-            if ($(window).scrollTop() >= 50) {
-                $('#sidebar').removeClass('add-padding');
-            }
-            else {
-                $('#sidebar').addClass('add-padding');
-            }
-        });
-    })
-</script>--}}
